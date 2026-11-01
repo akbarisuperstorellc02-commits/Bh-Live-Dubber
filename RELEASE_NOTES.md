@@ -139,3 +139,4 @@ TLS only, to `generativelanguage.googleapis.com` only. No telemetry, analytics o
 ---
 
 © 2026 [QW-AI-Code](https://github.com/QW-AI-Code)
+.
