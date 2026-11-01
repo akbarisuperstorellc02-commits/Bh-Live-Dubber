@@ -1,5 +1,5 @@
 /*
- * Doble Parsi V1.0.0 - live AI dubbing for Android
+ * Doble Parsi V1.1.0 - live AI dubbing for Android
  * Source and releases: github.com/QW-AI-Code
  *
  * Copyright (c) 2026 QW-AI-Code - https://github.com/QW-AI-Code
@@ -56,7 +56,7 @@ class DubPlayer(
     fun start() {
         if (running) return
         val attributes = AudioAttributes.Builder()
-            .setUsage(AudioAttributes.USAGE_MEDIA)
+            .setUsage(AudioAttributes.USAGE_ALARM) // own stream: survives muting the media stream
             .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
             .setAllowedCapturePolicy(AudioAttributes.ALLOW_CAPTURE_BY_NONE)
             .build()

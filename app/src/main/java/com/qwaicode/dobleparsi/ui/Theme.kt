@@ -1,5 +1,5 @@
 /*
- * Doble Parsi V1.0.0 - live AI dubbing for Android
+ * Doble Parsi V1.1.0 - live AI dubbing for Android
  * Engineered by QW-AI-Code
  *
  * Copyright (c) 2026 QW-AI-Code - https://github.com/QW-AI-Code
@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.sp
 import com.qwaicode.dobleparsi.R
 
 /**
- * Doble Parsi 1.0.0 design tokens.
+ * Doble Parsi 1.1.0 design tokens.
  *
  * Navy dark, single source of truth. Every colour role of the Material scheme is
  * pinned on purpose: nothing is left to the platform, so no widget can ever fall

@@ -2,7 +2,7 @@
 
 <img src="app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" width="96" height="96" alt="Doble Parsi" />
 
-# دوبله پارسی — Doble Parsi V1.0.0
+# دوبله پارسی — Doble Parsi V1.1.0
 
 **دوبلهٔ زندهٔ هر صدایی که روی گوشی پخش می‌شود، با هوش مصنوعی + خروجی صوتی و زیرنویس**
 _AI live dubbing for any audio playing on your Android phone, with audio and subtitle output_
@@ -43,7 +43,7 @@ Download/Doble Parsi/<نام ویدئو>/
 
 | فایل | برای چه گوشی‌ای |
 |---|---|
-| `DobleParsi-1.0.0-universal.apk` | همهٔ گوشی‌های اندروید ۱۰ و بالاتر (هر معماری: arm64-v8a، armeabi-v7a، x86_64) |
+| `DobleParsi-1.1.0-universal.apk` | همهٔ گوشی‌های اندروید ۱۰ و بالاتر (هر معماری: arm64-v8a، armeabi-v7a، x86_64) |
 
 > **چرا دیگر سه فایل نیست؟** در ریلیزهای قبلی هر سه APK دقیقاً ۴۱٫۸ مگابایت بودند.
 > دلیلش باگ نبود، بی‌فایده بودن تفکیک ABI بود: این اپ **هیچ کتابخانهٔ بومی (`.so`)**
@@ -167,14 +167,14 @@ Download/Doble Parsi/<نام ویدئو>/
 ```bash
 git init
 git add .
-git commit -m "Doble Parsi for Android 1.0.0"
+git commit -m "Doble Parsi for Android 1.1.0"
 git branch -M main
 git remote add origin https://github.com/<user>/<repo>.git
 git push -u origin main
 ```
 تب **Actions** خودش شروع می‌کند (`.github/workflows/android.yml`) و بعد از حدود ۵ دقیقه:
 - APK یونیورسال در **Actions → آخرین ران → Artifacts**
-- و ریلیز **Doble Parsi V1.0.0** با همان APK و فایل `SHA256SUMS.txt` در **Releases**
+- و ریلیز **Doble Parsi V1.1.0** با همان APK و فایل `SHA256SUMS.txt` در **Releases**
 - در خلاصهٔ همان ران، **حجم APK** و **تعداد کتابخانه‌های بومی داخل آن** چاپ می‌شود (صفر)،
   که همان دلیل برابر بودن حجم سه فایل قبلی است.
 
@@ -223,7 +223,7 @@ base64 -w0 release.keystore > keystore.b64   # محتوای این فایل = KE
 
 **۴) بررسی دستی امضا:**
 ```bash
-apksigner verify --print-certs DobleParsi-1.0.0-universal.apk
+apksigner verify --print-certs DobleParsi-1.1.0-universal.apk
 keytool -list -v -keystore release.keystore -alias dobleparsi   # مقایسهٔ SHA-256
 ```
 
@@ -277,7 +277,7 @@ app/src/main/java/com/qwaicode/dobleparsi/
 | MP3 با wasm LAME | AAC با `MediaCodec` |
 | ducking با gain node | audio focus `GAIN_TRANSIENT_MAY_DUCK` |
 
-### تغییرات نسخهٔ ۱.۰.۰
+### تغییرات نسخهٔ ۱.۱.۰
 - **رابط کاربری کامل بازطراحی شد**: دارک سورمه‌ای حرفه‌ای، گرادیان برند از روی آیکون اپ، کارت‌بندی، سوییچ‌های واضح، و رنگ صریح روی هر متن (باگ «متن‌های مشکی و نامرئی» ریشه‌ای حل شد).
 - **آیکون رسمی اپ** در همهٔ چگالی‌ها + آیکون تطبیقی و مونوکروم اندروید ۱۳ + همان آیکون در هدر اپ و اعلان و دکمهٔ شناور.
 - **سوییچ زبان درست شد**: انگلیسی حالا کاملاً LTR و کاملاً انگلیسی است (حتی متن اعلان‌ها).
@@ -299,7 +299,7 @@ app/src/main/java/com/qwaicode/dobleparsi/
 - **یک APK یونیورسال به‌جای سه APK هم‌حجم**: تفکیک ABI برای اپی که هیچ کتابخانهٔ بومی
   ندارد بی‌معنی بود و سه فایل کپی هم بودند؛ حالا یک APK ساخته می‌شود و حجم واقعی با
   R8 و حذف منابع بی‌استفاده کم شده است + چک‌سام و بررسی امضا و گزارش حجم در هر بیلد.
-- شمارهٔ نسخه بدون تغییر: **۱.۰.۰**.
+- شمارهٔ نسخه: **۱.۱.۰**.
 
 </div>
 
@@ -329,7 +329,7 @@ Grab the APK from **[Releases](../../releases/latest)**. There is **one file**:
 
 | File | For |
 |---|---|
-| `DobleParsi-1.0.0-universal.apk` | every Android 10+ phone, any ABI (arm64-v8a, armeabi-v7a, x86_64) |
+| `DobleParsi-1.1.0-universal.apk` | every Android 10+ phone, any ABI (arm64-v8a, armeabi-v7a, x86_64) |
 
 > **Why not three files any more?** In the earlier release all three APKs were
 > exactly 41.8 MB. That was not a packaging bug, the ABI splits were simply
@@ -454,7 +454,7 @@ normally open the app first and start the video after.
 
 ### Build with GitHub Actions
 Push the repo; `.github/workflows/android.yml` builds the release APK on every push,
-uploads it as an artifact and publishes the **Doble Parsi V1.0.0** release with
+uploads it as an artifact and publishes the **Doble Parsi V1.1.0** release with
 `SHA256SUMS.txt`. The run summary also prints the APK size and how many native
 libraries it contains (zero) - the reason the previous three APKs weighed the same.
 Nothing needs to be installed locally.
@@ -481,7 +481,7 @@ automatically and falls back to the debug key only when no keystore exists.
 3. CI builds: `base64 -w0 release.keystore` and store it as the `KEYSTORE_BASE64`
 secret, plus `KEYSTORE_PASSWORD`, `KEY_ALIAS`, `KEY_PASSWORD`. Every build is then
 signed with the same identity, so updates install over the previous version.
-4. Verify: `apksigner verify --print-certs DobleParsi-1.0.0-universal.apk` (the
+4. Verify: `apksigner verify --print-certs DobleParsi-1.1.0-universal.apk` (the
 workflow prints this too).
 
 ### Security audit
@@ -502,7 +502,7 @@ workflow prints this too).
 | Background work | everything is tied to one foreground service with a visible notification; the wake lock is released and the notification removed as soon as the session ends. |
 | Signing | v1+v2+v3 with your own keystore; the APK's SHA-256 checksum is published with the release. |
 
-### What's in 1.0.0
+### What's in 1.1.0
 - **UI rebuilt**: professional navy dark theme, brand gradient taken from the app icon, card layout, explicit colour on every text (the "black, invisible text" bug is gone at the root).
 - **Official app icon** at every density, plus adaptive and Android 13 monochrome variants, reused in the app header, the notification and the bubble.
 - **Language switch fixed**: English is now fully LTR and fully English, notification text included.
@@ -527,7 +527,7 @@ workflow prints this too).
   for an app with no native libraries, so the three 41.8 MB files were byte-for-byte
   copies. One APK is published now and the real size is cut with R8 + resource
   shrinking, with checksums, signature verification and a size report on every build.
-- Version number unchanged: **1.0.0**.
+- Version: **1.1.0**.
 
 ---
 

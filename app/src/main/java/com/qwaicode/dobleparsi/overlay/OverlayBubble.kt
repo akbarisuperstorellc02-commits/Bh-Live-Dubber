@@ -1,5 +1,5 @@
 /*
- * Doble Parsi V1.0.0 - live AI dubbing for Android
+ * Doble Parsi V1.1.0 - live AI dubbing for Android
  * Crafted by QW-AI-Code
  *
  * Copyright (c) 2026 QW-AI-Code - https://github.com/QW-AI-Code

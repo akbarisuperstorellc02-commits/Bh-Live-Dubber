@@ -1,5 +1,5 @@
 /*
- * Doble Parsi V1.0.0 - live AI dubbing for Android
+ * Doble Parsi V1.1.0 - live AI dubbing for Android
  * @QW-AI-Code on GitHub
  *
  * Copyright (c) 2026 QW-AI-Code - https://github.com/QW-AI-Code
@@ -35,6 +35,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.VolumeOff
+import androidx.compose.material.icons.automirrored.filled.VolumeUp
 import androidx.compose.material.icons.filled.Bolt
 import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material.icons.filled.ExpandMore
@@ -54,6 +56,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MenuAnchorType
 import androidx.compose.material3.MenuDefaults
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Slider
@@ -64,6 +67,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -72,6 +76,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -84,13 +89,17 @@ import com.qwaicode.dobleparsi.core.Languages
 import com.qwaicode.dobleparsi.core.Loc
 import com.qwaicode.dobleparsi.core.Settings
 import com.qwaicode.dobleparsi.core.UsageSnapshot
+import com.qwaicode.dobleparsi.net.ApiCheck
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import com.qwaicode.dobleparsi.service.DubUiState
 import com.qwaicode.dobleparsi.service.Phase
 
 /**
- * Doble Parsi 1.0.0 — main screen.
+ * Doble Parsi 1.1.0 — main screen.
  *
- * Rebuilt from scratch for 1.0.0: navy dark, brand gradient pulled from the app
+ * Rebuilt from scratch for 1.1.0: navy dark, brand gradient pulled from the app
  * icon, card based layout, and an explicit colour on every single piece of text so
  * nothing can render dark-on-dark.
  */
@@ -147,17 +156,7 @@ fun DubScreen(
             }
 
             Panel(title = str(R.string.section_outputs), icon = Icons.Filled.Bolt) {
-                SwitchRow(
-                    title = str(R.string.live_playback),
-                    hint = str(R.string.live_playback_hint),
-                    checked = settings.livePlayback
-                ) { value -> onSettingsChange { it.copy(livePlayback = value) } }
-                RowDivider()
-                SwitchRow(
-                    title = str(R.string.duck_original),
-                    hint = str(R.string.duck_original_hint),
-                    checked = settings.duckOriginal
-                ) { value -> onSettingsChange { it.copy(duckOriginal = value) } }
+                MuteButtons(settings, onSettingsChange)
                 RowDivider()
                 SwitchRow(
                     title = str(R.string.save_audio),
@@ -478,6 +477,8 @@ private fun ApiKeyField(
         colors = fieldColors(),
         modifier = Modifier.fillMaxWidth()
     )
+    Spacer(Modifier.height(10.dp))
+    ApiTest(settings.apiKey)
     Spacer(Modifier.height(8.dp))
     Text(
         text = str(R.string.api_key_help),
@@ -636,30 +637,11 @@ private fun AdvancedPanel(settings: Settings, onSettingsChange: ((Settings) -> S
         AnimatedVisibility(visible = expanded) {
             Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
                 SliderRow(
-                    label = str(R.string.dub_volume),
-                    value = "${(settings.dubVolume * 100).toInt()}%",
-                    position = settings.dubVolume,
-                    range = 0.2f..1f
-                ) { value -> onSettingsChange { it.copy(dubVolume = value) } }
-
-                SwitchRow(
-                    title = str(R.string.low_latency),
-                    hint = str(R.string.low_latency_hint),
-                    checked = settings.lowLatency
-                ) { value -> onSettingsChange { it.copy(lowLatency = value) } }
-
-                SliderRow(
                     label = str(R.string.dub_sync),
                     value = "${settings.dubSyncMs} ${str(R.string.millis_short)}",
                     position = settings.dubSyncMs.toFloat(),
                     range = 0f..1500f
                 ) { value -> onSettingsChange { it.copy(dubSyncMs = value.toInt()) } }
-
-                SwitchRow(
-                    title = str(R.string.strong_duck),
-                    hint = str(R.string.strong_duck_hint),
-                    checked = settings.strongDuck
-                ) { value -> onSettingsChange { it.copy(strongDuck = value) } }
 
                 SliderRow(
                     label = str(R.string.original_level),
@@ -940,4 +922,113 @@ private fun ErrorBanner(code: String, detail: String?) {
 private fun formatElapsed(ms: Long, lang: String): String {
     val total = ms / 1000
     return String.format(Loc.locale(lang), "%02d:%02d", total / 60, total % 60)
+}
+
+
+/** Two buttons only: mute / unmute the original video sound and the dub voice. */
+@Composable
+private fun MuteButtons(settings: Settings, onSettingsChange: ((Settings) -> Settings) -> Unit) {
+    val dubMuted = !settings.livePlayback
+    val context = LocalContext.current
+    Column(verticalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.padding(vertical = 6.dp)) {
+        MuteButton(
+            label = str(if (settings.originalMuted) R.string.unmute_original else R.string.mute_original),
+            muted = settings.originalMuted
+        ) { onSettingsChange { it.copy(originalMuted = !it.originalMuted) } }
+        val systemFraction = remember { systemMusicFraction(context) }
+        val originalShown = if (settings.originalVolume < 0f) systemFraction else settings.originalVolume
+        SliderRow(
+            label = str(R.string.original_volume),
+            value = if (settings.originalMuted) str(R.string.muted_short) else "${(originalShown * 100).toInt()}%",
+            position = originalShown,
+            range = 0f..1f
+        ) { value -> onSettingsChange { it.copy(originalVolume = value, originalMuted = false) } }
+        MuteButton(
+            label = str(if (dubMuted) R.string.unmute_dub else R.string.mute_dub),
+            muted = dubMuted
+        ) { onSettingsChange { it.copy(livePlayback = !it.livePlayback) } }
+        SliderRow(
+            label = str(R.string.dub_volume),
+            value = if (dubMuted) str(R.string.muted_short) else "${(settings.dubVolume * 100).toInt()}%",
+            position = settings.dubVolume,
+            range = 0f..1f
+        ) { value -> onSettingsChange { it.copy(dubVolume = value, livePlayback = true) } }
+        Text(
+            text = str(R.string.mute_hint),
+            style = MaterialTheme.typography.labelSmall,
+            color = DP.TextMuted
+        )
+    }
+}
+
+@Composable
+private fun MuteButton(label: String, muted: Boolean, onClick: () -> Unit) {
+    val shape = RoundedCornerShape(14.dp)
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(shape)
+            .background(if (muted) DP.Brand.copy(alpha = 0.18f) else DP.Field)
+            .border(1.dp, if (muted) DP.Brand else DP.Border, shape)
+            .clickable(onClick = onClick)
+            .padding(horizontal = 14.dp, vertical = 12.dp)
+    ) {
+        Icon(
+            imageVector = if (muted) Icons.AutoMirrored.Filled.VolumeOff else Icons.AutoMirrored.Filled.VolumeUp,
+            contentDescription = null,
+            tint = if (muted) DP.Brand else DP.TextSecondary
+        )
+        Spacer(Modifier.width(10.dp))
+        Text(text = label, style = MaterialTheme.typography.bodyMedium, color = DP.Text)
+    }
+}
+
+/** API key + connection test (same as the extension's "test key" button). */
+@Composable
+private fun ApiTest(apiKey: String) {
+    val scope = rememberCoroutineScope()
+    var busy by remember { mutableStateOf(false) }
+    var result by remember { mutableStateOf<ApiCheck.Result?>(null) }
+
+    OutlinedButton(
+        onClick = {
+            if (busy) return@OutlinedButton
+            busy = true
+            scope.launch {
+                result = withContext(Dispatchers.IO) { ApiCheck.test(apiKey) }
+                busy = false
+            }
+        },
+        enabled = !busy,
+        shape = RoundedCornerShape(14.dp),
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        Text(str(if (busy) R.string.api_testing else R.string.api_test), color = DP.Text)
+    }
+    result?.let { r ->
+        val ok = r.kind == ApiCheck.Kind.OK
+        val text = when (r.kind) {
+            ApiCheck.Kind.OK -> str(R.string.api_ok).format(r.model, r.ms)
+            ApiCheck.Kind.NO_KEY -> str(R.string.err_no_key)
+            ApiCheck.Kind.BAD_KEY -> str(R.string.api_bad_key)
+            ApiCheck.Kind.QUOTA ->
+                if (r.retrySeconds > 0) str(R.string.api_quota_retry).format(r.retrySeconds) else str(R.string.api_quota)
+            ApiCheck.Kind.MISSING -> str(R.string.api_missing).format(r.model)
+            ApiCheck.Kind.OFFLINE -> str(R.string.api_offline)
+            ApiCheck.Kind.ERROR -> str(R.string.api_no_answer)
+        }
+        Spacer(Modifier.height(6.dp))
+        Text(
+            text = text,
+            style = MaterialTheme.typography.labelMedium,
+            color = if (ok) DP.Accent else DP.TextSecondary
+        )
+    }
+}
+
+private fun systemMusicFraction(context: android.content.Context): Float {
+    val audio = context.getSystemService(android.content.Context.AUDIO_SERVICE) as android.media.AudioManager
+    val max = audio.getStreamMaxVolume(android.media.AudioManager.STREAM_MUSIC).coerceAtLeast(1)
+    return audio.getStreamVolume(android.media.AudioManager.STREAM_MUSIC).toFloat() / max
 }

@@ -3,7 +3,7 @@
     <!-- Persian (default) -->
     <string name="app_name">دوبله پارسی</string>
     <string name="app_tagline">دوبلهٔ زندهٔ صدای گوشی با هوش مصنوعی</string>
-    <string name="app_version">نسخهٔ ۱.۰.۰</string>
+    <string name="app_version">نسخهٔ ۱.۱.۰</string>
 
     <string name="section_key">کلید دسترسی</string>
     <string name="section_engine">موتور دوبله</string>
@@ -16,11 +16,6 @@
     <string name="api_key_help">کلید را از Google AI Studio بگیر؛ فقط روی همین گوشی و در حافظهٔ خصوصی اپ ذخیره می‌شود.</string>
     <string name="target_lang">زبان دوبله</string>
     <string name="model">مدل ترجمهٔ زنده</string>
-
-    <string name="live_playback">پخش زندهٔ دوبله</string>
-    <string name="live_playback_hint">دوبله همان لحظه از بلندگو شنیده می‌شود.</string>
-    <string name="duck_original">کم‌کردن صدای اصلی هنگام دوبله</string>
-    <string name="duck_original_hint">وقتی گویندهٔ دوبله حرف می‌زند، صدای اصلی پایین می‌آید.</string>
     <string name="save_audio">ذخیرهٔ فایل صوتی خروجی</string>
     <string name="save_audio_hint">فایل m4a هم‌نام ویدئو در پوشهٔ دانلود.</string>
     <string name="save_subtitle">ذخیرهٔ زیرنویس</string>
@@ -33,7 +28,6 @@
     <string name="audio_source">محتوای فایل صوتی</string>
     <string name="audio_source_mix">میکس دوبله و صدای اصلی</string>
     <string name="audio_source_dub">فقط دوبله</string>
-    <string name="dub_volume">بلندی صدای دوبله</string>
     <string name="subtitle_offset">جبران تاخیر زیرنویس</string>
     <string name="millis_short">میلی‌ثانیه</string>
 
@@ -92,11 +86,7 @@
     <string name="bubble_tip">یک لمس: شروع/پایان دوبله · کشیدن: جابه‌جایی · لمس طولانی: حذف دکمه تا شروع بعدی.</string>
 
     <!-- همگام‌سازی دوبله -->
-    <string name="low_latency">شروع دوبله همزمان با صدای اصلی</string>
-    <string name="low_latency_hint">کمترین بافر ممکن؛ دوبله همان لحظه‌ای که مدل حرف می‌زند شنیده می‌شود.</string>
     <string name="dub_sync">تاخیر عمدی دوبله</string>
-    <string name="strong_duck">پایین نگه‌داشتن صدای اصلی در تمام جلسه</string>
-    <string name="strong_duck_hint">صدای اصلی در کل دوبله پایین می‌ماند، نه فقط وسط جمله‌ها.</string>
     <string name="original_level">بلندی صدای اصلی در فایل خروجی</string>
 
     <!-- مانیتور توکن -->
@@ -126,9 +116,26 @@
     <string name="section_about">سازنده و کپی‌رایت</string>
     <string name="about_role">توسعه‌دهندهٔ دوبله پارسی · اپ اندروید و افزونهٔ کروم</string>
     <string name="about_rights">همهٔ حقوق محفوظ است.</string>
-    <string name="about_license">دوبله پارسی نسخهٔ ۱.۰.۰ · بدون تلمتری، بدون سرور واسط. کدها و ریلیزها در گیت‌هاب سازنده.</string>
+    <string name="about_license">دوبله پارسی نسخهٔ ۱.۱.۰ · بدون تلمتری، بدون سرور واسط. کدها و ریلیزها در گیت‌هاب سازنده.</string>
     <string name="about_star">ستاره در گیت‌هاب</string>
     <string name="about_open">صفحهٔ گیت‌هاب</string>
 
     <string name="err_quota">سهمیهٔ API جِمینای تمام شده یا محدود شده است (خطای ۴۲۹). بخش «مصرف توکن» را ببین.</string>
+    <string name="mute_original">قطع صدای اصلی ویدئو</string>
+    <string name="unmute_original">وصل کردن صدای اصلی ویدئو</string>
+    <string name="mute_dub">قطع صدای دوبله</string>
+    <string name="unmute_dub">وصل کردن صدای دوبله</string>
+    <string name="mute_hint">صدای اصلی ویدئو واقعاً قطع می‌شود (ولوم رسانه صفر می‌شود) و دوبله جدا و واضح شنیده می‌شود. با پایان دوبله، ولوم به حالت قبل برمی‌گردد.</string>
+    <string name="api_test">تست کلید و اتصال</string>
+    <string name="api_testing">در حال بررسی…</string>
+    <string name="api_ok">کلید سالم است و %1$s جواب داد (%2$d میلی‌ثانیه).</string>
+    <string name="api_bad_key">کلید پذیرفته نشد. کلید معتبر را از AI Studio بگیر.</string>
+    <string name="api_quota">سهمیهٔ این کلید پر است. بعداً امتحان کن.</string>
+    <string name="api_quota_retry">سهمیه پر است؛ سرویس گفته %1$d ثانیه بعد امتحان کن.</string>
+    <string name="api_missing">مدل %1$s روی این کلید وجود ندارد.</string>
+    <string name="api_offline">به سرویس نرسیدیم. اتصال اینترنت را بررسی کن.</string>
+    <string name="api_no_answer">پاسخی نیامد. یک بار دیگر بزن.</string>
+    <string name="original_volume">بلندی صدای اصلی ویدئو</string>
+    <string name="dub_volume">بلندی صدای دوبله</string>
+    <string name="muted_short">قطع</string>
 </resources>

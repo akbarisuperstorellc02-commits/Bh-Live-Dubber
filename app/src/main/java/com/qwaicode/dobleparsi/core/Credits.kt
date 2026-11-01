@@ -1,5 +1,5 @@
 /*
- * Doble Parsi V1.0.0 - live AI dubbing for Android
+ * Doble Parsi V1.1.0 - live AI dubbing for Android
  * Source and releases: github.com/QW-AI-Code
  *
  * Copyright (c) 2026 QW-AI-Code - https://github.com/QW-AI-Code
@@ -20,7 +20,7 @@ object Credits {
     const val GITHUB_URL = "https://github.com/QW-AI-Code"
     const val GITHUB_SHORT = "github.com/QW-AI-Code"
     const val YEAR = "2026"
-    const val VERSION = "1.0.0"
+    const val VERSION = "1.1.0"
 
     const val COPYRIGHT = "© $YEAR $AUTHOR"
     const val COPYRIGHT_LONG = "© $YEAR $AUTHOR - $GITHUB_SHORT"

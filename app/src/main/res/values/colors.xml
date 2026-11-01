@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Doble Parsi 1.0.0 — professional navy dark palette (matches the app icon) -->
+    <!-- Doble Parsi 1.1.0 — professional navy dark palette (matches the app icon) -->
     <color name="dp_bg">#060A14</color>
     <color name="dp_bg_elevated">#0F1626</color>
     <color name="dp_surface">#131C30</color>

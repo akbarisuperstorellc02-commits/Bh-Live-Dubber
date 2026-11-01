@@ -1,5 +1,5 @@
 /*
- * Doble Parsi V1.0.0 - live AI dubbing for Android
+ * Doble Parsi V1.1.0 - live AI dubbing for Android
  * Engineered by QW-AI-Code
  *
  * Copyright (c) 2026 QW-AI-Code - https://github.com/QW-AI-Code
@@ -18,9 +18,7 @@ import kotlinx.coroutines.flow.asStateFlow
  *
  * Defaults are tuned for "the dub starts together with the original audio and the
  * original stays quiet":
- *   lowLatency    = true   -> player pre-buffer drops to ~60 ms
  *   dubSyncMs     = 0      -> no artificial delay on top of the model latency
- *   strongDuck    = true   -> the original is held down for the whole session
  *   originalLevel = 0.18   -> the original is only a quiet bed under the dub
  */
 data class Settings(
@@ -28,9 +26,14 @@ data class Settings(
     val uiLang: String = "fa",
     val targetLang: String = "fa",
     val translateModel: String = Languages.MODELS.first(),
+    /** Dub audible (false = dub muted). */
     val livePlayback: Boolean = true,
-    val duckOriginal: Boolean = true,
-    val dubVolume: Float = 1.0f,
+    /** Original video sound muted (media stream set to 0 while dubbing). */
+    val originalMuted: Boolean = false,
+    /** Original video volume as a fraction of the device maximum; -1 = keep the current device volume. */
+    val originalVolume: Float = -1f,
+    /** Dub voice volume, 0..1. */
+    val dubVolume: Float = 1f,
     val saveAudio: Boolean = true,
     val audioSource: String = "mix",
     val saveSubtitle: Boolean = true,
@@ -40,12 +43,8 @@ data class Settings(
     val useOriginalFilename: Boolean = true,
 
     // -- dub timing / original level ---------------------------------------
-    /** Minimum pre-buffer: the dub is heard the moment the model speaks. */
-    val lowLatency: Boolean = true,
     /** Extra delay added on purpose, 0 = exactly in sync with the original. */
     val dubSyncMs: Int = 0,
-    /** Hold the original down for the whole session, not only mid sentence. */
-    val strongDuck: Boolean = true,
     /** Level of the original audio inside the saved mix (0.02 .. 0.6). */
     val originalLevel: Float = 0.18f,
 
@@ -101,7 +100,8 @@ class SettingsStore private constructor(context: Context) {
             targetLang = prefs.getString("targetLang", d.targetLang) ?: d.targetLang,
             translateModel = prefs.getString("translateModel", d.translateModel) ?: d.translateModel,
             livePlayback = prefs.getBoolean("livePlayback", d.livePlayback),
-            duckOriginal = prefs.getBoolean("duckOriginal", d.duckOriginal),
+            originalMuted = prefs.getBoolean("originalMuted", d.originalMuted),
+            originalVolume = prefs.getFloat("originalVolume", d.originalVolume),
             dubVolume = prefs.getFloat("dubVolume", d.dubVolume),
             saveAudio = prefs.getBoolean("saveAudio", d.saveAudio),
             audioSource = prefs.getString("audioSource", d.audioSource) ?: d.audioSource,
@@ -110,9 +110,7 @@ class SettingsStore private constructor(context: Context) {
             bilingualSubtitle = prefs.getBoolean("bilingualSubtitle", d.bilingualSubtitle),
             subtitleOffsetMs = prefs.getInt("subtitleOffsetMs", d.subtitleOffsetMs),
             useOriginalFilename = prefs.getBoolean("useOriginalFilename", d.useOriginalFilename),
-            lowLatency = prefs.getBoolean("lowLatency", d.lowLatency),
             dubSyncMs = prefs.getInt("dubSyncMs", d.dubSyncMs),
-            strongDuck = prefs.getBoolean("strongDuck", d.strongDuck),
             originalLevel = prefs.getFloat("originalLevel", d.originalLevel),
             showBubble = prefs.getBoolean("showBubble", d.showBubble),
             keepBubble = prefs.getBoolean("keepBubble", d.keepBubble),
@@ -142,7 +140,8 @@ class SettingsStore private constructor(context: Context) {
             putString("targetLang", next.targetLang)
             putString("translateModel", next.translateModel)
             putBoolean("livePlayback", next.livePlayback)
-            putBoolean("duckOriginal", next.duckOriginal)
+            putBoolean("originalMuted", next.originalMuted)
+            putFloat("originalVolume", next.originalVolume)
             putFloat("dubVolume", next.dubVolume)
             putBoolean("saveAudio", next.saveAudio)
             putString("audioSource", next.audioSource)
@@ -151,9 +150,7 @@ class SettingsStore private constructor(context: Context) {
             putBoolean("bilingualSubtitle", next.bilingualSubtitle)
             putInt("subtitleOffsetMs", next.subtitleOffsetMs)
             putBoolean("useOriginalFilename", next.useOriginalFilename)
-            putBoolean("lowLatency", next.lowLatency)
             putInt("dubSyncMs", next.dubSyncMs)
-            putBoolean("strongDuck", next.strongDuck)
             putFloat("originalLevel", next.originalLevel)
             putBoolean("showBubble", next.showBubble)
             putBoolean("keepBubble", next.keepBubble)

@@ -1,4 +1,4 @@
-# Doble Parsi V1.0.0 - release shrinking rules
+# Doble Parsi V1.1.0 - release shrinking rules
 # Copyright (c) 2026 QW-AI-Code - https://github.com/QW-AI-Code
 #
 # R8 is enabled so the single universal APK is not carrying the whole
