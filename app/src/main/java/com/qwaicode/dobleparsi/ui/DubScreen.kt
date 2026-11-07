@@ -255,9 +255,9 @@ private fun Header(onToggleUiLang: () -> Unit) {
             contentAlignment = Alignment.Center
         ) {
             Icon(
-                painter = painterResource(R.drawable.ic_notification),
+                painter = painterResource(R.drawable.ic_launcher_foreground),
                 contentDescription = str(R.string.app_name),
-                tint = Color.White,
+                tint = Color.Unspecified,
                 modifier = Modifier.size(28.dp)
             )
         }
