@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- English -->
-    <string name="app_name">Doble Parsi</string>
-    <string name="app_tagline">AI live dubbing for any sound on your phone</string>
-    <string name="app_version">Version 1.1.0</string>
+    <string name="app_name">BH VoiceDub</string>
+    <string name="app_tagline">Live translation and dubbing for your phone</string>
+    <string name="app_version">Version 1.2.0</string>
 
     <string name="section_key">Access key</string>
     <string name="section_engine">Dubbing engine</string>
@@ -55,17 +55,17 @@
     <string name="perm_mic">Microphone permission is required to capture playback.</string>
     <string name="perm_capture">Device audio capture was not allowed.</string>
     <string name="perm_overlay">Allow “display over other apps” for the floating bubble.</string>
-    <string name="notif_access">Turn on notification access for Doble Parsi so files are named after the video that is playing.</string>
+    <string name="notif_access">Turn on notification access for BH VoiceDub so files are named after the video that is playing.</string>
     <string name="notif_access_open">Enable access</string>
 
     <string name="err_no_key">Add your API key first.</string>
     <string name="err_no_output">Turn on at least live playback, audio saving or subtitles.</string>
     <string name="err_socket">Lost the Gemini connection, retrying…</string>
 
-    <string name="saved_files">Saved to Download/Doble Parsi</string>
+    <string name="saved_files">Saved to Download/BH VoiceDub</string>
     <string name="how_to_title">How it works</string>
     <string name="how_to">Play audio in any app (YouTube, Telegram, a browser…) and hit Start dubbing. The app taps the phone playback, dubs it in real time and, when you stop, saves the audio and subtitles named after the video.</string>
-    <string name="credit">Built by QW-AI-Code</string>
+    <string name="credit">Customized and maintained by BH</string>
     <string name="lang_toggle">فا</string>
 
     <!-- Floating bubble -->
@@ -114,9 +114,9 @@
 
     <!-- Developer and copyright -->
     <string name="section_about">Developer &amp; copyright</string>
-    <string name="about_role">Developer of Doble Parsi · Android app and Chrome extension</string>
+    <string name="about_role">BH VoiceDub customization · live Android dubbing</string>
     <string name="about_rights">All rights reserved.</string>
-    <string name="about_license">Doble Parsi 1.1.0 · no telemetry, no relay server. Source and releases on the author\'s GitHub.</string>
+    <string name="about_license">BH VoiceDub 1.2.0 · customized from Doble Parsi by QW-AI-Code.</string>
     <string name="about_star">Star on GitHub</string>
     <string name="about_open">Open GitHub</string>
 
