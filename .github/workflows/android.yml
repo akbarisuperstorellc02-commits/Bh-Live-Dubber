@@ -71,7 +71,7 @@ jobs:
       - name: Build the release APK (universal, R8 + resource shrinking)
         env:
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD || 'dobleparsi' }}
-          KEY_ALIAS: ${{ secrets.KEY_ALIAS || 'dobleparsi' }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS || 'bhvoicedub' }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD || 'dobleparsi' }}
         run: gradle assembleRelease --no-daemon --stacktrace
 
@@ -90,7 +90,7 @@ jobs:
       # Proof for the "why were all three the same size" question: no .so at all.
       - name: Report size and native libraries
         run: |
-          apk="out/DobleParsi-${APP_VERSION}-universal.apk"
+          apk="out/BHVoiceDub-${APP_VERSION}-universal.apk"
           echo "### APK report" >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"
           echo "| file | size |" >> "$GITHUB_STEP_SUMMARY"
@@ -114,15 +114,15 @@ jobs:
       - name: Upload APK artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: DobleParsi-${{ env.APP_VERSION }}-apk
+          name: BHVoiceDub-${{ env.APP_VERSION }}-apk
           path: |
             out/*.apk
             out/SHA256SUMS.txt
           if-no-files-found: error
           retention-days: 90
 
-      # One clean, versioned release: Doble Parsi V1.1.0.
-      - name: Publish release Doble Parsi V1.1.0
+      # One clean, versioned release: BH VoiceDub V1.2.0.
+      - name: Publish release BH VoiceDub V1.2.0
         if: github.event_name != 'pull_request'
         uses: softprops/action-gh-release@v2
         with:
