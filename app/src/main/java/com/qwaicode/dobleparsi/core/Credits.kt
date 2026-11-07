@@ -15,12 +15,14 @@ package com.qwaicode.dobleparsi.core
  */
 object Credits {
 
-    const val AUTHOR = "QW-AI-Code"
-    const val GITHUB_HANDLE = "@QW-AI-Code"
-    const val GITHUB_URL = "https://github.com/QW-AI-Code"
-    const val GITHUB_SHORT = "github.com/QW-AI-Code"
+    const val AUTHOR = "BH VoiceDub"
+    const val GITHUB_HANDLE = "@akbarisuperstorellc02-commits"
+    const val GITHUB_URL = "https://github.com/akbarisuperstorellc02-commits/Bh-Live-Dubber"
+    const val GITHUB_SHORT = "github.com/akbarisuperstorellc02-commits/Bh-Live-Dubber"
     const val YEAR = "2026"
-    const val VERSION = "1.1.0"
+    const val UPSTREAM_AUTHOR = "QW-AI-Code"
+    const val UPSTREAM_URL = "https://github.com/QW-AI-Code/Doble-Parsi-Mobile"
+    const val VERSION = "1.2.0"
 
     const val COPYRIGHT = "© $YEAR $AUTHOR"
     const val COPYRIGHT_LONG = "© $YEAR $AUTHOR - $GITHUB_SHORT"
