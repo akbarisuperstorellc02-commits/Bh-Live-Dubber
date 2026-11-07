@@ -41,10 +41,10 @@ object DP {
     val TextSecondary = Color(0xFFA7B4CE)
     val TextMuted = Color(0xFF7C8AA8)
 
-    val BrandStart = Color(0xFF7C5CFF)
-    val BrandEnd = Color(0xFF2E7BFF)
-    val Brand = Color(0xFF4C82FF)
-    val Accent = Color(0xFF2DD4BF)
+    val BrandStart = Color(0xFFA855F7)
+    val BrandEnd = Color(0xFF22D3EE)
+    val Brand = Color(0xFF38BDF8)
+    val Accent = Color(0xFF22D3EE)
     val Danger = Color(0xFFFF5F6D)
     val DangerSoft = Color(0xFFFFD9DC)
 
