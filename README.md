@@ -2,14 +2,14 @@
 
 <img src="brand/bh-voicedub-icon.svg" width="112" height="112" alt="BH VoiceDub icon" />
 
-# BH VoiceDub — BH VoiceDub V1.2.0
+# BH VoiceDub — Live AI Dubbing V1.2.0
 
 **دوبلهٔ زندهٔ هر صدایی که روی گوشی پخش می‌شود، با هوش مصنوعی + خروجی صوتی و زیرنویس**
 _AI live dubbing for any audio playing on your Android phone, with audio and subtitle output_
 
 Android 10+ (API 29) · Kotlin + Jetpack Compose · فارسی / English · BH VoiceDub 1.2.0
 
-پورت اندرویدی افزونهٔ کروم **BH VoiceDub** — ساخته‌شده توسط **[QW-AI-Code](https://github.com/QW-AI-Code)**
+نسخهٔ سفارشی و نگهداری‌شده توسط **BH**، بر پایهٔ پروژهٔ اصلی [Doble Parsi Mobile](https://github.com/QW-AI-Code/Doble-Parsi-Mobile) از **[QW-AI-Code](https://github.com/QW-AI-Code)**.
 
 [دانلود APK از ریلیزها / Download the APK](../../releases/latest)
 
