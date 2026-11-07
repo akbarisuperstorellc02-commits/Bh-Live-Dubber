@@ -138,4 +138,5 @@
     <string name="original_volume">بلندی صدای اصلی ویدئو</string>
     <string name="dub_volume">بلندی صدای دوبله</string>
     <string name="muted_short">قطع</string>
+    <string name="about_source_credit">بر پایهٔ پروژهٔ اصلی Doble Parsi از QW-AI-Code؛ سپاس از سازندهٔ اصلی.</string>
 </resources>
