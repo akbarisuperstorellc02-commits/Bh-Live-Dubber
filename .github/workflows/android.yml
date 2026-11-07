@@ -1,6 +1,6 @@
-# Doble Parsi V1.1.0 - release build
+# BH VoiceDub V1.2.0 - release build
 # Copyright (c) 2026 QW-AI-Code - https://github.com/QW-AI-Code
-name: Build & release APK
+name: BH VoiceDub · Android APK
 
 on:
   push:
@@ -13,11 +13,11 @@ permissions:
   contents: write
 
 env:
-  APP_VERSION: 1.1.0
+  APP_VERSION: 1.2.0
 
 jobs:
   build:
-    name: Doble Parsi V1.1.0 — release APK
+    name: BH VoiceDub V1.2.0 — release APK
     runs-on: ubuntu-latest
 
     steps:
@@ -58,11 +58,11 @@ jobs:
             keytool -genkeypair -v \
               -keystore release.keystore \
               -storetype PKCS12 \
-              -alias "${KEY_ALIAS:-dobleparsi}" \
+              -alias "${KEY_ALIAS:-bhvoicedub}" \
               -keyalg RSA -keysize 2048 -validity 10000 \
               -storepass "${KEYSTORE_PASSWORD:-dobleparsi}" \
               -keypass "${KEY_PASSWORD:-dobleparsi}" \
-              -dname "CN=Doble Parsi, OU=QW-AI-Code, O=QW-AI-Code, C=IR"
+              -dname "CN=BH VoiceDub, OU=BH, O=BH, C=AF"
             echo "::warning::No KEYSTORE_BASE64 secret found, generated a throwaway key for this build."
           fi
 
@@ -81,7 +81,7 @@ jobs:
           mkdir -p out
           ls -la app/build/outputs/apk/release/
           src=$(ls app/build/outputs/apk/release/*.apk | head -n 1)
-          cp "$src" "out/DobleParsi-${APP_VERSION}-universal.apk"
+          cp "$src" "out/BHVoiceDub-${APP_VERSION}-universal.apk"
           cd out
           sha256sum *.apk > SHA256SUMS.txt
           ls -la
@@ -127,10 +127,10 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: v${{ env.APP_VERSION }}
-          name: Doble Parsi V${{ env.APP_VERSION }}
+          name: BH VoiceDub V${{ env.APP_VERSION }}
           body_path: RELEASE_NOTES.md
           files: |
-            out/DobleParsi-${{ env.APP_VERSION }}-universal.apk
+            out/BHVoiceDub-${{ env.APP_VERSION }}-universal.apk
             out/SHA256SUMS.txt
           prerelease: false
           make_latest: true
