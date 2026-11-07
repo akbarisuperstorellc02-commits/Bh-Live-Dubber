@@ -21,12 +21,12 @@ import java.util.Locale
 /**
  * File naming and output paths — ported from src/filenames.js.
  *
- *   Download/Doble Parsi/<name>/<name>.m4a
- *   Download/Doble Parsi/<name>/<name>.srt
+ *   Download/BH VoiceDub/<name>/<name>.m4a
+ *   Download/BH VoiceDub/<name>/<name>.srt
  */
 object Output {
 
-    const val ROOT_FOLDER = "Doble Parsi"
+    const val ROOT_FOLDER = "BH VoiceDub"
 
     private val ILLEGAL = Regex("[\\x00-\\x1f\\x7f<>:\"/\\\\|?*]")
     private val NOTIFICATION_PREFIX = Regex("^\\(\\s*\\d+\\s*\\)\\s*")
