@@ -1,15 +1,15 @@
 <div align="center">
 
-<img src="app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" width="96" height="96" alt="Doble Parsi" />
+<img src="brand/bh-voicedub-icon.svg" width="112" height="112" alt="BH VoiceDub icon" />
 
-# دوبله پارسی — Doble Parsi V1.1.0
+# BH VoiceDub — BH VoiceDub V1.2.0
 
 **دوبلهٔ زندهٔ هر صدایی که روی گوشی پخش می‌شود، با هوش مصنوعی + خروجی صوتی و زیرنویس**
 _AI live dubbing for any audio playing on your Android phone, with audio and subtitle output_
 
-Android 10+ (API 29) · Kotlin + Jetpack Compose · فارسی / English
+Android 10+ (API 29) · Kotlin + Jetpack Compose · فارسی / English · BH VoiceDub 1.2.0
 
-پورت اندرویدی افزونهٔ کروم **دوبله پارسی** — ساخته‌شده توسط **[QW-AI-Code](https://github.com/QW-AI-Code)**
+پورت اندرویدی افزونهٔ کروم **BH VoiceDub** — ساخته‌شده توسط **[QW-AI-Code](https://github.com/QW-AI-Code)**
 
 [دانلود APK از ریلیزها / Download the APK](../../releases/latest)
 
@@ -32,7 +32,7 @@ Android 10+ (API 29) · Kotlin + Jetpack Compose · فارسی / English
 در پایان هر جلسه، خروجی‌ها **هم‌نام خودِ ویدئو** ذخیره می‌شوند:
 
 ```
-Download/Doble Parsi/<نام ویدئو>/
+Download/BH VoiceDub/<نام ویدئو>/
 ├── <نام ویدئو>.m4a            صدای دوبله (یا میکس دوبله و صدای اصلی)
 ├── <نام ویدئو>.srt            زیرنویس دوبله
 └── <نام ویدئو>.original.srt   زیرنویس زبان مبدأ (اختیاری)
@@ -43,7 +43,7 @@ Download/Doble Parsi/<نام ویدئو>/
 
 | فایل | برای چه گوشی‌ای |
 |---|---|
-| `DobleParsi-1.1.0-universal.apk` | همهٔ گوشی‌های اندروید ۱۰ و بالاتر (هر معماری: arm64-v8a، armeabi-v7a، x86_64) |
+| `BHVoiceDub-1.2.0-universal.apk` | همهٔ گوشی‌های اندروید ۱۰ و بالاتر (هر معماری: arm64-v8a، armeabi-v7a، x86_64) |
 
 > **چرا دیگر سه فایل نیست؟** در ریلیزهای قبلی هر سه APK دقیقاً ۴۱٫۸ مگابایت بودند.
 > دلیلش باگ نبود، بی‌فایده بودن تفکیک ABI بود: این اپ **هیچ کتابخانهٔ بومی (`.so`)**
@@ -63,10 +63,10 @@ Download/Doble Parsi/<نام ویدئو>/
 ۵. **شروع دوبله** را بزن. اندروید سه چیز می‌پرسد (فقط بار اول): اجازهٔ **میکروفون**، اجازهٔ **ضبط صدا/تصویر دستگاه** («Start now» را بزن) و اگر دکمهٔ شناور روشن است، اجازهٔ **نمایش روی برنامه‌های دیگر**.
 ۶. برو داخل یوتیوب/تلگرام/مرورگر و ویدئو را پخش کن. دوبله همان لحظه شنیده می‌شود.
 ۷. برای پایان: دکمهٔ شناور را لمس کن، یا از اعلان **پایان** را بزن، یا به اپ برگرد و **پایان دوبله** را بزن. دکمهٔ شناور بعد از پایان سرِ جایش می‌ماند؛ برای ویدئوی بعدی همان را بزن.
-۸. اعلانِ «خروجی‌های دوبله ذخیره شد» فهرست فایل‌ها را نشان می‌دهد؛ فایل‌ها در `Download/Doble Parsi/<نام ویدئو>/` هستند.
+۸. اعلانِ «خروجی‌های دوبله ذخیره شد» فهرست فایل‌ها را نشان می‌دهد؛ فایل‌ها در `Download/BH VoiceDub/<نام ویدئو>/` هستند.
 
 > **برای این‌که فایل‌ها هم‌نام ویدئو ذخیره شوند**، یک بار دسترسی **«اعلان‌ها»** را
-> برای دوبله پارسی روشن کن (اپ خودش با یک کارت پیشنهاد می‌دهد و مستقیم به همان
+> برای BH VoiceDub روشن کن (اپ خودش با یک کارت پیشنهاد می‌دهد و مستقیم به همان
 > صفحهٔ تنظیمات می‌برد). اندروید نام ویدئوی درحال‌پخش را فقط از طریق
 > `MediaSession` می‌دهد و خواندن آن به این دسترسی نیاز دارد. اگر روشن نباشد، نام
 > فایل «نام اپ پخش‌کننده + تاریخ و ساعت» می‌شود.
@@ -167,14 +167,14 @@ Download/Doble Parsi/<نام ویدئو>/
 ```bash
 git init
 git add .
-git commit -m "Doble Parsi for Android 1.1.0"
+git commit -m "BH VoiceDub for Android 1.2.0"
 git branch -M main
 git remote add origin https://github.com/<user>/<repo>.git
 git push -u origin main
 ```
 تب **Actions** خودش شروع می‌کند (`.github/workflows/android.yml`) و بعد از حدود ۵ دقیقه:
 - APK یونیورسال در **Actions → آخرین ران → Artifacts**
-- و ریلیز **Doble Parsi V1.1.0** با همان APK و فایل `SHA256SUMS.txt` در **Releases**
+- و ریلیز **BH VoiceDub V1.2.0** با همان APK و فایل `SHA256SUMS.txt` در **Releases**
 - در خلاصهٔ همان ران، **حجم APK** و **تعداد کتابخانه‌های بومی داخل آن** چاپ می‌شود (صفر)،
   که همان دلیل برابر بودن حجم سه فایل قبلی است.
 
@@ -189,7 +189,7 @@ keytool -genkeypair -v \
   -storetype PKCS12 \
   -alias dobleparsi \
   -keyalg RSA -keysize 2048 -validity 10000 \
-  -dname "CN=Doble Parsi, OU=QW-AI-Code, O=QW-AI-Code, C=IR"
+  -dname "CN=BH VoiceDub, OU=QW-AI-Code, O=QW-AI-Code, C=IR"
 ```
 
 **۲) بیلد محلی:** فایل `keystore.properties` را کنار `settings.gradle.kts` بساز
@@ -223,7 +223,7 @@ base64 -w0 release.keystore > keystore.b64   # محتوای این فایل = KE
 
 **۴) بررسی دستی امضا:**
 ```bash
-apksigner verify --print-certs DobleParsi-1.1.0-universal.apk
+apksigner verify --print-certs BHVoiceDub-1.2.0-universal.apk
 keytool -list -v -keystore release.keystore -alias dobleparsi   # مقایسهٔ SHA-256
 ```
 
@@ -238,7 +238,7 @@ keytool -list -v -keystore release.keystore -alias dobleparsi   # مقایسهٔ
 | میکروفون | جریان ضبط از `AudioPlaybackCaptureConfiguration` می‌آید (صدای پخش‌شدهٔ دستگاه)، نه از میکروفون؛ اجازهٔ `RECORD_AUDIO` صرفاً شرط سیستم برای این API است. |
 | دسترسی اعلان‌ها | سرویس `MediaTitleService` هیچ اعلانی را نمی‌خواند و پردازش نمی‌کند؛ فقط وجودش لازم است تا `getActiveSessions` مجاز شود و **تنها** عنوان مدیا خوانده شود. |
 | ضبط صفحه | `MediaProjection` فقط برای مسیر صداست؛ هیچ فریم تصویری خوانده، ذخیره یا ارسال نمی‌شود. |
-| دسترسی به فایل‌ها | نوشتن با `MediaStore` در `Download/Doble Parsi/`؛ هیچ اجازهٔ خواندن حافظه (`READ_EXTERNAL_STORAGE`/`MANAGE_EXTERNAL_STORAGE`) گرفته نمی‌شود و فایل‌های دیگرت خوانده نمی‌شوند. |
+| دسترسی به فایل‌ها | نوشتن با `MediaStore` در `Download/BH VoiceDub/`؛ هیچ اجازهٔ خواندن حافظه (`READ_EXTERNAL_STORAGE`/`MANAGE_EXTERNAL_STORAGE`) گرفته نمی‌شود و فایل‌های دیگرت خوانده نمی‌شوند. |
 | کد بومی و SDK ثالث | هیچ کتابخانهٔ بومی (`.so`) و هیچ SDK ثالثی به‌جز `okhttp` (شبکه) و `androidx`/Compose (رابط) وجود ندارد. انکودر AAC خودِ اندروید است. |
 | کد پویا | `WebView`، `eval`، بارگذاری کد از شبکه و `DexClassLoader` استفاده نمی‌شود. |
 | سرویس‌های صادرشده | `DubService` با `exported=false`. `MediaTitleService` طبق الزام سیستم `exported=true` است اما با `BIND_NOTIFICATION_LISTENER_SERVICE` قفل شده، پس فقط خود سیستم می‌تواند به آن bind کند. |
@@ -318,7 +318,7 @@ time. The model replicates the original speaker's voice, so there is no voice pi
 Every session is saved **named after the video**:
 
 ```
-Download/Doble Parsi/<video name>/
+Download/BH VoiceDub/<video name>/
 ├── <video name>.m4a            dubbed audio (or dub + original mixed)
 ├── <video name>.srt            dub subtitles
 └── <video name>.original.srt   source-language subtitles (optional)
@@ -329,7 +329,7 @@ Grab the APK from **[Releases](../../releases/latest)**. There is **one file**:
 
 | File | For |
 |---|---|
-| `DobleParsi-1.1.0-universal.apk` | every Android 10+ phone, any ABI (arm64-v8a, armeabi-v7a, x86_64) |
+| `BHVoiceDub-1.2.0-universal.apk` | every Android 10+ phone, any ABI (arm64-v8a, armeabi-v7a, x86_64) |
 
 > **Why not three files any more?** In the earlier release all three APKs were
 > exactly 41.8 MB. That was not a packaging bug, the ABI splits were simply
@@ -350,7 +350,7 @@ Enable "install unknown apps" for your file manager or browser, then install.
 5. Hit **Start dubbing**. Android asks once for **microphone**, once for **device audio/screen capture** (tap "Start now") and, if the bubble is on, for **display over other apps**.
 6. Go to YouTube/Telegram/your browser and play something. The dub comes out live.
 7. To finish: tap the floating bubble, hit **Stop** in the notification, or return to the app and hit **Stop dubbing**. The bubble stays where it is, so the next video's dub starts with one tap on it.
-8. A "Dubbing output saved" notification lists the files, which live in `Download/Doble Parsi/<video name>/`.
+8. A "Dubbing output saved" notification lists the files, which live in `Download/BH VoiceDub/<video name>/`.
 
 > **To get files named after the video**, turn on **notification access** for Doble
 > Parsi once (the app shows a card that takes you straight to that settings page).
@@ -454,7 +454,7 @@ normally open the app first and start the video after.
 
 ### Build with GitHub Actions
 Push the repo; `.github/workflows/android.yml` builds the release APK on every push,
-uploads it as an artifact and publishes the **Doble Parsi V1.1.0** release with
+uploads it as an artifact and publishes the **BH VoiceDub V1.2.0** release with
 `SHA256SUMS.txt`. The run summary also prints the APK size and how many native
 libraries it contains (zero) - the reason the previous three APKs weighed the same.
 Nothing needs to be installed locally.
@@ -467,7 +467,7 @@ keytool -genkeypair -v \
   -storetype PKCS12 \
   -alias dobleparsi \
   -keyalg RSA -keysize 2048 -validity 10000 \
-  -dname "CN=Doble Parsi, OU=QW-AI-Code, O=QW-AI-Code, C=IR"
+  -dname "CN=BH VoiceDub, OU=QW-AI-Code, O=QW-AI-Code, C=IR"
 ```
 2. Local builds: create `keystore.properties` next to `settings.gradle.kts` (git-ignored):
 ```properties
@@ -481,7 +481,7 @@ automatically and falls back to the debug key only when no keystore exists.
 3. CI builds: `base64 -w0 release.keystore` and store it as the `KEYSTORE_BASE64`
 secret, plus `KEYSTORE_PASSWORD`, `KEY_ALIAS`, `KEY_PASSWORD`. Every build is then
 signed with the same identity, so updates install over the previous version.
-4. Verify: `apksigner verify --print-certs DobleParsi-1.1.0-universal.apk` (the
+4. Verify: `apksigner verify --print-certs BHVoiceDub-1.2.0-universal.apk` (the
 workflow prints this too).
 
 ### Security audit
@@ -495,14 +495,14 @@ workflow prints this too).
 | Microphone | the stream comes from `AudioPlaybackCaptureConfiguration` (device playback), not the mic; `RECORD_AUDIO` is only the OS gate for that API. |
 | Notification access | `MediaTitleService` never reads or processes notifications; it exists so `getActiveSessions` is allowed and only the media title is read. |
 | Screen capture | `MediaProjection` is used for the audio path only; no video frame is ever read, stored or sent. |
-| Storage | writes through `MediaStore` into `Download/Doble Parsi/`; no read-storage permission is requested, so your other files are never touched. |
+| Storage | writes through `MediaStore` into `Download/BH VoiceDub/`; no read-storage permission is requested, so your other files are never touched. |
 | Native code / third-party SDKs | no `.so` libraries; only `okhttp` (network) and `androidx`/Compose (UI). AAC encoding is the platform encoder. |
 | Dynamic code | no `WebView`, no `eval`, no code downloaded at runtime, no `DexClassLoader`. |
 | Exported components | `DubService` is `exported=false`; `MediaTitleService` must be exported but is locked behind `BIND_NOTIFICATION_LISTENER_SERVICE`, so only the system can bind. |
 | Background work | everything is tied to one foreground service with a visible notification; the wake lock is released and the notification removed as soon as the session ends. |
 | Signing | v1+v2+v3 with your own keystore; the APK's SHA-256 checksum is published with the release. |
 
-### What's in 1.1.0
+### What's in 1.2.0
 - **UI rebuilt**: professional navy dark theme, brand gradient taken from the app icon, card layout, explicit colour on every text (the "black, invisible text" bug is gone at the root).
 - **Official app icon** at every density, plus adaptive and Android 13 monochrome variants, reused in the app header, the notification and the bubble.
 - **Language switch fixed**: English is now fully LTR and fully English, notification text included.
@@ -527,10 +527,10 @@ workflow prints this too).
   for an app with no native libraries, so the three 41.8 MB files were byte-for-byte
   copies. One APK is published now and the real size is cut with R8 + resource
   shrinking, with checksums, signature verification and a size report on every build.
-- Version: **1.1.0**.
+- Version: **1.2.0**.
 
 ---
 
-© 2026 [QW-AI-Code](https://github.com/QW-AI-Code) · The original extension's MP3
+© 2026 BH VoiceDub · Original project credit: [QW-AI-Code](https://github.com/QW-AI-Code) · The original extension's MP3
 encoder is replaced by the platform AAC encoder, so no third-party license ships
 with the app.
