@@ -1,19 +1,21 @@
-# BH VoiceDub 1.2.0
+# BH VoiceDub 1.0
 
-## Branding and identity
-- Rebranded the Android app as BH VoiceDub in Persian and English.
-- Added a custom BH monogram with an integrated audio waveform, violet/cyan brand palette, adaptive launcher foreground and Android 13 monochrome icon.
-- Updated the app header and notification mark to use the BH identity.
-- Updated the output folder to `Download/BH VoiceDub/`.
+## App identity
+- BH VoiceDub branding and app identity.
+- Removed previous developer identification from the app's visible About and credit text.
+- Version name: 1.0
+- Version code: 10300 (kept higher than the preceding build for Android upgrade ordering).
 
-## Project ownership and attribution
-This repository is BH's customized fork of [Doble Parsi Mobile](https://github.com/QW-AI-Code/Doble-Parsi-Mobile). The upstream project's original author, copyright notices and source credit are preserved in the source and About screen.
+## User-facing improvements
+- Persistent Persian/English interface language selection.
+- Dubbed voice uses the Android media volume stream and the phone's physical volume keys.
+- Clean BH VoiceDub About panel without third-party developer promotion.
 
-## Compatibility and versioning
+## Compatibility
 - Android 10+ (API 29+).
-- Version name: 1.2.0
-- Version code: 10200
-- Existing application ID is intentionally preserved to avoid breaking upgrade compatibility with the upstream app installation.
+- Existing application ID is preserved for package compatibility.
+- Upstream copyright and license obligations remain preserved in source-level notices and project documentation.
 
-## Scope of this release
-This is the first BH branding/customization pass. The underlying live-dubbing engine and its Android capture limitations remain inherited from the upstream project; this release does not claim to add unrestricted capture of protected audio or calls.
+## Notes
+- Live dubbing requires internet access and a valid Gemini API key.
+- Audio capture depends on Android and the source media app's capture policy.
