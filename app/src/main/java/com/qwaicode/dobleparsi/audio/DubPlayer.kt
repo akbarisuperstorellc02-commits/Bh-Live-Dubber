@@ -56,7 +56,7 @@ class DubPlayer(
     fun start() {
         if (running) return
         val attributes = AudioAttributes.Builder()
-            .setUsage(AudioAttributes.USAGE_ALARM) // own stream: survives muting the media stream
+            .setUsage(AudioAttributes.USAGE_MEDIA) // use the phone media-volume buttons
             .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
             .setAllowedCapturePolicy(AudioAttributes.ALLOW_CAPTURE_BY_NONE)
             .build()
