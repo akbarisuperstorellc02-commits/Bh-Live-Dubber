@@ -141,6 +141,12 @@ fun AboutPanel() {
         )
         Spacer(Modifier.height(4.dp))
         Text(
+            text = str(R.string.about_source_credit),
+            style = MaterialTheme.typography.labelSmall,
+            color = DP.TextMuted
+        )
+        Spacer(Modifier.height(4.dp))
+        Text(
             text = signature,
             style = MaterialTheme.typography.labelSmall,
             color = DP.TextMuted
