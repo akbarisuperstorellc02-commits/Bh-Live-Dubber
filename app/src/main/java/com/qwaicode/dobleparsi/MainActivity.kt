@@ -67,6 +67,13 @@ class MainActivity : AppCompatActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, true)
         store = SettingsStore.get(this)
         usage = UsageStore.get(this)
+
+        // Restore the user's saved per-app locale before the first Compose frame.
+        // Android resources and Compose strings therefore start in the same language.
+        val savedLocales = LocaleListCompat.forLanguageTags(store.value.uiLang)
+        if (AppCompatDelegate.getApplicationLocales().toLanguageTags() != savedLocales.toLanguageTags()) {
+            AppCompatDelegate.setApplicationLocales(savedLocales)
+        }
         applyWindowDirection(store.value.uiLang)
         consumeQuickStart(intent)
 
