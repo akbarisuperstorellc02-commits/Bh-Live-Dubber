@@ -3,7 +3,7 @@
     <!-- Persian (default) -->
     <string name="app_name">BH VoiceDub</string>
     <string name="app_tagline">دوبله و ترجمهٔ زندهٔ صدای گوشی</string>
-    <string name="app_version">نسخهٔ ۱.۲.۰</string>
+    <string name="app_version">نسخهٔ ۱.۰</string>
 
     <string name="section_key">کلید دسترسی</string>
     <string name="section_engine">موتور دوبله</string>
@@ -116,7 +116,7 @@
     <string name="section_about">سازنده و کپی‌رایت</string>
     <string name="about_role">نسخهٔ سفارشی BH VoiceDub · دوبلهٔ زنده برای اندروید</string>
     <string name="about_rights">همهٔ حقوق محفوظ است.</string>
-    <string name="about_license">BH VoiceDub نسخهٔ ۱.۲.۰ · نسخهٔ سفارشی بر پایهٔ Doble Parsi از QW-AI-Code.</string>
+    <string name="about_license">BH VoiceDub نسخهٔ ۱.۰ · دوبلهٔ زنده برای اندروید.</string>
     <string name="about_star">BH VoiceDub</string>
     <string name="about_open">برنامهٔ اندروید</string>
 
@@ -138,5 +138,5 @@
     <string name="original_volume">بلندی صدای اصلی ویدئو</string>
     <string name="dub_volume">بلندی صدای دوبله</string>
     <string name="muted_short">قطع</string>
-    <string name="about_source_credit">بر پایهٔ پروژهٔ اصلی Doble Parsi از QW-AI-Code؛ سپاس از سازندهٔ اصلی.</string>
+    <string name="about_source_credit">بر پایهٔ پروژهٔ متن‌باز اصلی؛ حقوق و مجوز آن محفوظ است.</string>
 </resources>
