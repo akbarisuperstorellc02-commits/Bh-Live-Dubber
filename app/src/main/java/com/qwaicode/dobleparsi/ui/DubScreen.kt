@@ -942,41 +942,6 @@ private fun MuteButtons(settings: Settings, onSettingsChange: ((Settings) -> Set
 }
 
 @Composable
-private fun MuteButtons(settings: Settings, onSettingsChange: ((Settings) -> Settings) -> Unit) {
-    val dubMuted = !settings.livePlayback
-    val context = LocalContext.current
-    Column(verticalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.padding(vertical = 6.dp)) {
-        MuteButton(
-            label = str(if (settings.originalMuted) R.string.unmute_original else R.string.mute_original),
-            muted = settings.originalMuted
-        ) { onSettingsChange { it.copy(originalMuted = !it.originalMuted) } }
-        val systemFraction = remember { systemMusicFraction(context) }
-        val originalShown = if (settings.originalVolume < 0f) systemFraction else settings.originalVolume
-        SliderRow(
-            label = str(R.string.original_volume),
-            value = if (settings.originalMuted) str(R.string.muted_short) else "${(originalShown * 100).toInt()}%",
-            position = originalShown,
-            range = 0f..1f
-        ) { value -> onSettingsChange { it.copy(originalVolume = value, originalMuted = false) } }
-        MuteButton(
-            label = str(if (dubMuted) R.string.unmute_dub else R.string.mute_dub),
-            muted = dubMuted
-        ) { onSettingsChange { it.copy(livePlayback = !it.livePlayback) } }
-        SliderRow(
-            label = str(R.string.dub_volume),
-            value = if (dubMuted) str(R.string.muted_short) else "${(settings.dubVolume * 100).toInt()}%",
-            position = settings.dubVolume,
-            range = 0f..1f
-        ) { value -> onSettingsChange { it.copy(dubVolume = value, livePlayback = true) } }
-        Text(
-            text = str(R.string.mute_hint),
-            style = MaterialTheme.typography.labelSmall,
-            color = DP.TextMuted
-        )
-    }
-}
-
-@Composable
 private fun MuteButton(label: String, muted: Boolean, onClick: () -> Unit) {
     val shape = RoundedCornerShape(14.dp)
     Row(
