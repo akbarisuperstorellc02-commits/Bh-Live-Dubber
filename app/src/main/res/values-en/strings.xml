@@ -64,7 +64,7 @@
 
     <string name="saved_files">Saved to Download/BH VoiceDub</string>
     <string name="how_to_title">How it works</string>
-    <string name="how_to">Play audio in any app (YouTube, Telegram, a browser…) and hit Start dubbing. The app taps the phone playback, dubs it in real time and, when you stop, saves the audio and subtitles named after the video.</string>
+    <string name="how_to">Play media from a compatible app and tap Start dubbing. If the source app and Android allow playback capture, audio is sent to Gemini for live dubbing. Some apps, DRM-protected media and calls cannot be captured. This feature requires internet access and a valid API key.</string>
     <string name="credit">Customized and maintained by BH</string>
     <string name="lang_toggle">فا</string>
 
