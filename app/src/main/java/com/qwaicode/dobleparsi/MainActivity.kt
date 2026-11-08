@@ -65,6 +65,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, true)
+        setVolumeControlStream(android.media.AudioManager.STREAM_MUSIC)
         store = SettingsStore.get(this)
         usage = UsageStore.get(this)
 
