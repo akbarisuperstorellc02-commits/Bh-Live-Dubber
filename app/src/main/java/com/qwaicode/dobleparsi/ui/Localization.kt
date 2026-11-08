@@ -13,6 +13,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.runtime.key
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLayoutDirection
@@ -50,11 +51,15 @@ fun AppLocale(lang: String, content: @Composable () -> Unit) {
     val configuration = LocalConfiguration.current
     val strings = remember(lang, context, configuration) { Strings(context, lang) }
     val direction = if (strings.isRtl) LayoutDirection.Rtl else LayoutDirection.Ltr
-    CompositionLocalProvider(
-        LocalStrings provides strings,
-        LocalLayoutDirection provides direction,
-        content = content
-    )
+    // Recreate the localized subtree on a language switch so nested panels
+    // cannot retain remembered text rendered in the previous locale.
+    key(lang) {
+        CompositionLocalProvider(
+            LocalStrings provides strings,
+            LocalLayoutDirection provides direction,
+            content = content
+        )
+    }
 }
 
 /** Locale-correct replacement for stringResource(). */
