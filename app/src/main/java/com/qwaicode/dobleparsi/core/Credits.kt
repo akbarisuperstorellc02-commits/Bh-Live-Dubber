@@ -8,7 +8,7 @@ package com.qwaicode.dobleparsi.core
 object Credits {
     const val AUTHOR = "BH VoiceDub"
     const val YEAR = "2026"
-    const val VERSION = "1.2.0"
+    const val VERSION = "1.0"
 
     const val COPYRIGHT = "© $YEAR $AUTHOR"
     const val COPYRIGHT_LONG = COPYRIGHT
