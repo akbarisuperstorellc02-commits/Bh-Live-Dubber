@@ -117,15 +117,15 @@
     <string name="about_role">نسخهٔ سفارشی BH VoiceDub · دوبلهٔ زنده برای اندروید</string>
     <string name="about_rights">همهٔ حقوق محفوظ است.</string>
     <string name="about_license">BH VoiceDub نسخهٔ ۱.۲.۰ · نسخهٔ سفارشی بر پایهٔ Doble Parsi از QW-AI-Code.</string>
-    <string name="about_star">ستاره در گیت‌هاب</string>
-    <string name="about_open">صفحهٔ گیت‌هاب</string>
+    <string name="about_star">BH VoiceDub</string>
+    <string name="about_open">برنامهٔ اندروید</string>
 
     <string name="err_quota">سهمیهٔ API جِمینای تمام شده یا محدود شده است (خطای ۴۲۹). بخش «مصرف توکن» را ببین.</string>
     <string name="mute_original">قطع صدای اصلی ویدئو</string>
     <string name="unmute_original">وصل کردن صدای اصلی ویدئو</string>
     <string name="mute_dub">قطع صدای دوبله</string>
     <string name="unmute_dub">وصل کردن صدای دوبله</string>
-    <string name="mute_hint">صدای اصلی ویدئو واقعاً قطع می‌شود (ولوم رسانه صفر می‌شود) و دوبله جدا و واضح شنیده می‌شود. با پایان دوبله، ولوم به حالت قبل برمی‌گردد.</string>
+    <string name="mute_hint">برای کم‌وزیاد کردن صدای دوبله از دکمه‌های فیزیکی صدای گوشی استفاده کنید. در صورت پشتیبانی برنامهٔ پخش‌کننده، صدای اصلی هنگام صحبت دوبله به‌طور خودکار کاهش می‌یابد.</string>
     <string name="api_test">تست کلید و اتصال</string>
     <string name="api_testing">در حال بررسی…</string>
     <string name="api_ok">کلید سالم است و %1$s جواب داد (%2$d میلی‌ثانیه).</string>
