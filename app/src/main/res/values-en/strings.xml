@@ -117,15 +117,15 @@
     <string name="about_role">BH VoiceDub customization · live Android dubbing</string>
     <string name="about_rights">All rights reserved.</string>
     <string name="about_license">BH VoiceDub 1.2.0 · customized from Doble Parsi by QW-AI-Code.</string>
-    <string name="about_star">Star on GitHub</string>
-    <string name="about_open">Open GitHub</string>
+    <string name="about_star">BH VoiceDub</string>
+    <string name="about_open">Android app</string>
 
     <string name="err_quota">The Gemini API quota is exhausted or throttled (429). Check the token usage card.</string>
     <string name="mute_original">Mute original video sound</string>
     <string name="unmute_original">Unmute original video sound</string>
     <string name="mute_dub">Mute dub voice</string>
     <string name="unmute_dub">Unmute dub voice</string>
-    <string name="mute_hint">The original video sound is really muted (media volume goes to 0) so the dub is heard clearly on its own. Your volume is restored when dubbing ends.</string>
+    <string name="mute_hint">Use your phone’s physical volume buttons to adjust the dub. If the source player supports audio ducking, its original sound will lower automatically while the dub is speaking.</string>
     <string name="api_test">Test the key and connection</string>
     <string name="api_testing">Checking…</string>
     <string name="api_ok">The key works and %1$s answered (%2$d ms).</string>
