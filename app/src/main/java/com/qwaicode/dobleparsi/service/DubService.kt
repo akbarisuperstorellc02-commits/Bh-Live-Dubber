@@ -29,7 +29,7 @@ import androidx.core.app.NotificationCompat
 import com.qwaicode.dobleparsi.MainActivity
 import com.qwaicode.dobleparsi.R
 import com.qwaicode.dobleparsi.audio.DubPlayer
-import com.qwaicode.dobleparsi.audio.OriginalVolume
+import com.qwaicode.dobleparsi.audio.DuckController
 import com.qwaicode.dobleparsi.audio.FloatRingBuffer
 import com.qwaicode.dobleparsi.audio.Int16StreamReader
 import com.qwaicode.dobleparsi.audio.Pcm
@@ -124,7 +124,7 @@ class DubService : Service() {
     private var capture: PlaybackCapture? = null
     private var player: DubPlayer? = null
     private var client: GeminiLiveClient? = null
-    private var originalVolume: OriginalVolume? = null
+    private var duckController: DuckController? = null
     private var bubble: OverlayBubble? = null
     private var recorder: AacRecorder? = null
     private var pendingAudio: Output.PendingFile? = null
@@ -303,18 +303,14 @@ class DubService : Service() {
                 meter(samples, count)
             }
         )
-        dubPlayer.setVolume(if (settings.livePlayback) settings.dubVolume else 0f)
+        // Dub volume is controlled by Android's media stream and the phone's
+        // physical volume keys. Do not alter STREAM_MUSIC globally: that would
+        // also change the dub's volume.
+        dubPlayer.setVolume(if (settings.livePlayback) 1f else 0f)
         dubPlayer.start()
-        // 0 ms by default: the dub is heard the instant the model starts speaking.
         if (settings.dubSyncMs > 0) dubPlayer.pushSilence(settings.dubSyncMs)
         player = dubPlayer
-
-        // The dub plays on the alarm stream, so the original (media stream) can be
-        // muted for real without silencing the dub.
-        originalVolume = OriginalVolume(this).also {
-            it.engage()
-            it.apply(settings.originalMuted, settings.originalVolume)
-        }
+        duckController = DuckController(this)
 
         if (settings.saveAudio) {
             val pending = Output.createAudio(this, sessionName)
@@ -453,8 +449,7 @@ class DubService : Service() {
 
     /** The two mute buttons act instantly, also in the middle of a session. */
     private fun applyLiveVolumes() {
-        originalVolume?.apply(settings.originalMuted, settings.originalVolume)
-        player?.setVolume(if (settings.livePlayback) settings.dubVolume else 0f)
+        player?.setVolume(if (settings.livePlayback) 1f else 0f)
     }
 
     private var mixBuffer = FloatArray(0)
@@ -464,7 +459,10 @@ class DubService : Service() {
     private fun onSpeaking(speaking: Boolean) {
         SessionState.update { it.copy(speaking = speaking) }
         bubble?.setSpeaking(speaking)
-        if (!speaking) bubble?.setLevel(0f)
+        if (speaking) duckController?.duck() else {
+            duckController?.scheduleRelease()
+            bubble?.setLevel(0f)
+        }
     }
 
     /** Feeds the bubble the real loudness of the dub so the animation matches the voice. */
@@ -619,8 +617,8 @@ class DubService : Service() {
         runCatching { current?.stop() }
         player = null
 
-        runCatching { originalVolume?.release() }
-        originalVolume = null
+        runCatching { duckController?.abandon() }
+        duckController = null
         if (!keepBubbleAlive()) {
             bubble?.hide()
             bubble = null
@@ -714,7 +712,7 @@ class DubService : Service() {
             runCatching { capture?.stop() }
             runCatching { client?.close() }
             runCatching { player?.stop() }
-            runCatching { originalVolume?.release() }
+            runCatching { duckController?.abandon() }
             bubble?.hide()
             bubble = null
             releaseWakeLock()
