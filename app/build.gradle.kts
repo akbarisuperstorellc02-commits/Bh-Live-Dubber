@@ -29,8 +29,8 @@ val keystorePath = signingValue("storeFile", "KEYSTORE_FILE") ?: "release.keysto
 val keystoreFile = rootProject.file(keystorePath)
 val hasReleaseKeystore = keystoreFile.exists()
 
-val appVersionName = "1.2.0"
-val appVersionCode = 10200
+val appVersionName = "1.0"
+val appVersionCode = 10300
 
 android {
     namespace = "com.qwaicode.dobleparsi"
