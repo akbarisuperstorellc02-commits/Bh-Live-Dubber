@@ -76,7 +76,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -925,7 +924,23 @@ private fun formatElapsed(ms: Long, lang: String): String {
 }
 
 
-/** Two buttons only: mute / unmute the original video sound and the dub voice. */
+/** The dub has a mute switch; its loudness follows the phone's media volume keys. */
+@Composable
+private fun MuteButtons(settings: Settings, onSettingsChange: ((Settings) -> Settings) -> Unit) {
+    val dubMuted = !settings.livePlayback
+    Column(verticalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.padding(vertical = 6.dp)) {
+        MuteButton(
+            label = str(if (dubMuted) R.string.unmute_dub else R.string.mute_dub),
+            muted = dubMuted
+        ) { onSettingsChange { it.copy(livePlayback = !it.livePlayback) } }
+        Text(
+            text = str(R.string.mute_hint),
+            style = MaterialTheme.typography.labelSmall,
+            color = DP.TextMuted
+        )
+    }
+}
+
 @Composable
 private fun MuteButtons(settings: Settings, onSettingsChange: ((Settings) -> Settings) -> Unit) {
     val dubMuted = !settings.livePlayback
@@ -1027,8 +1042,3 @@ private fun ApiTest(apiKey: String) {
     }
 }
 
-private fun systemMusicFraction(context: android.content.Context): Float {
-    val audio = context.getSystemService(android.content.Context.AUDIO_SERVICE) as android.media.AudioManager
-    val max = audio.getStreamMaxVolume(android.media.AudioManager.STREAM_MUSIC).coerceAtLeast(1)
-    return audio.getStreamVolume(android.media.AudioManager.STREAM_MUSIC).toFloat() / max
-}
