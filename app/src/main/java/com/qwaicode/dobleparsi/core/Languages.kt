@@ -14,6 +14,7 @@ object Languages {
 
     val ALL: List<DubLanguage> = listOf(
         DubLanguage("fa", "فارسی", "Persian"),
+        DubLanguage("ps", "پښتو", "Pashto"),
         DubLanguage("en", "انگلیسی", "English"),
         DubLanguage("ar", "عربی", "Arabic"),
         DubLanguage("tr", "ترکی استانبولی", "Turkish"),
